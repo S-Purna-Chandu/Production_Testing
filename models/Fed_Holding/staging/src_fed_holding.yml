@@ -1,0 +1,9 @@
+version: 2
+
+# Define the sources for your project
+sources:
+  - name: staging
+    schema: staging
+    tables:
+      - name: fed_data
+        description: FED holdings data in CSV format
