@@ -40,6 +40,8 @@ models:
       mart:
         intermediate:
           +materialized: table
+          +database: '{{ env_var("DBT_DATABASE", "Transform") }}'
           +schema: intermediate
       staging:
+        +database: '{{ env_var("DBT_DATABASE", "Transform") }}'
         +materialized: table
