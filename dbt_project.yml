@@ -44,5 +44,5 @@ models:
           +schema: '{{ env_var("DBT_SCHEMA_INTERMEDIATE", "intermediate1") }}'
       staging:
         +database: '{{ env_var("DBT_DATABASE", "Transform") }}'
-        +schema: '{{ env_var("DBT_SCHEMA_raw", "staging1") }}'
+        +schema: '{{ env_var("DBT_SCHEMA_RAW", "staging1") }}'
         +materialized: '{{ env_var("DBT_MATERIALIZED", "view") }}'
