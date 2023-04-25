@@ -21,4 +21,4 @@ select
     t.$14::FLOAT AS ChangeFromPriorWeek,
     t.$15::FLOAT AS ChangeFromPriorYear,
     t.$16::VARCHAR(1) AS isAggregated
-FROM @{{source('fed_staging',external_stage_name)}}{{file_path}} (file_format => {{ database }}.{{ schema }}.{{ DBT_FED_SRC_FILE_FRT_NAME }}) t
+FROM @{{source('fed_staging',external_stage_name)}}{{file_path}} (file_format => {{ database }}.{{ schema }}.{{ file_format }}) t
