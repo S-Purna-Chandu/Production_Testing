@@ -1,4 +1,8 @@
-{%- set table_name = '/fed_holdings.csv' -%}
+{%- set file_path = env_var("DBT_FED_SRC_EXT_FILE_PATH", "/fed_holdings.csv") -%}
+{%- set external_stage_name = env_var("DBT_FED_SRC_EXT_STG", "fed_data") -%}
+{%- set database = env_var("DBT_FED_SRC_FILE_FRT_DB", target.database) -%}
+{%- set schema = env_var("DBT_FED_SRC_FILE_FRT_SCH", target.schema) -%}
+{%- set file_format = env_var("DBT_FED_SRC_FILE_FRT_NAME", "FED_HOLDING_CSV_FILE_FORMAT") -%}
 
 select 
     t.$1::DATE AS AsOfDate,
@@ -17,4 +21,4 @@ select
     t.$14::FLOAT AS ChangeFromPriorWeek,
     t.$15::FLOAT AS ChangeFromPriorYear,
     t.$16::VARCHAR(1) AS isAggregated
-FROM @{{source('staging','fed_data')}}{{table_name}} (file_format => FED_HOLDING_CSV_FILE_FORMAT) t
+FROM @{{source('fed_staging',external_stage_name)}}{{file_path}} (file_format => {{ database }}.{{ schema }}.FED_HOLDING_CSV_FILE_FORMAT) t

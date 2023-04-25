@@ -2,8 +2,9 @@ version: 2
 
 # Define the sources for your project
 sources:
-  - name: staging
-    schema: staging
+  - name: fed_staging
+    database: '{{ env_var("DBT_FED_SRC_DB", target.database) }}'
+    schema: '{{ env_var("DBT_FED_SRC_SCH", target.schema) }}'
     tables:
-      - name: fed_data
+      - name: '{{ env_var("DBT_FED_SRC_EXT_STG", "fed_data") }}'
         description: FED holdings data in CSV format
