@@ -39,7 +39,10 @@ models:
     Fed_Holding:
       mart:
         intermediate:
-          +materialized: table
-          +schema: intermediate
+          +materialized: '{{ env_var("DBT_MATERIALIZED", "table") }}'
+          +database: '{{ env_var("DBT_DATABASE", "Transform") }}'
+          +schema: '{{ env_var("DBT_SCHEMA_INTERMEDIATE", "intermediate1") }}'
       staging:
-        +materialized: table
+        +database: '{{ env_var("DBT_DATABASE", "Transform") }}'
+        +schema: '{{ env_var("DBT_SCHEMA", "staging_transform") }}'
+        +materialized: '{{ env_var("DBT_MATERIALIZED", "view") }}'
