@@ -25,6 +25,11 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "dbt_packages"
 
 
+vars:
+  my_db:
+  my_schema:
+
+
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
